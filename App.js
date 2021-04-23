@@ -1,21 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Task } from './components/taskr/Task';
+import { ButtonComp } from './components/taskr/ButtonComp'
 
-export default function App() {
-  return (
+const TASKERS = [
+  { id: 1, description: "Ola mundo"},
+  { id: 2, description: "Ola High"},
+  { id: 3, description: "Hello guys"},
+  { id: 4, description: "Aprendendo com React-Native"}
+]
+
+
+
+export default function App(){
+  return(
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      {TASKERS.map((t) => <Task description={t.description} />)}
+      <ButtonComp/>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
+  container:{
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    justifyContent: 'center'
+  }
+})
