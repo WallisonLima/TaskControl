@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { render } from 'react-dom';
+import {Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export default Task = ({ description, complete, onToggleComplete }) => {
+export const Task = ({ description, complete, onToggleComplete}) => {
     const [isDirty, setIsDirty] = useState(false)
-    const handleToggleComplete = () =>{
+
+    const handleToggleComplete = () => {
         setIsDirty(true);
         onToggleComplete();
     }
+
     return (
         <Pressable
             style={[styles.container, isDirty && styles.dirty]}
@@ -16,19 +19,24 @@ export default Task = ({ description, complete, onToggleComplete }) => {
                 {description}
             </Text>
         </Pressable>
-    )
+    );
+
 };
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'black',
-        width: '100%',
+        width: '80%',
         padding: 26,
-        borderBottomColor: 'rgba(255, 255, 255, 0.25)',
+        borderBottomColor: 'rgba(255,255,255,0.25)',
         borderBottomWidth: 2,
+        borderRadius: 12,
+        marginBottom: 5,
     },
     text: {
-        color: 'white'
+        color: 'white',
+        textAlign: 'center',
+        fontSize: 18
     },
     completed: {
         textDecorationLine: 'line-through',
@@ -36,6 +44,6 @@ const styles = StyleSheet.create({
         textDecorationStyle: 'double'
     },
     dirty: {
-        backgroundColor: 'pink'
+        backgroundColor: 'gray'
     }
 })
