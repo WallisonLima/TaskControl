@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
-import { render } from 'react-dom';
+
 import {Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export const Task = ({ description, complete, onToggleComplete}) => {
-    const [isDirty, setIsDirty] = useState(false)
+export const Task = ({ description, complete, onToggleComplete, onToggleClear}) => {
+    const [isDirty, setIsDisrty] = useState(false)
 
-    const handleToggleComplete = () => {
-        setIsDirty(true);
+    const handleToggleComplete = () =>{
+        setIsDisrty(true);
         onToggleComplete();
     }
-
+    
     return (
         <Pressable
             style={[styles.container, isDirty && styles.dirty]}
             onPress={handleToggleComplete}
         >
-            <Text style={[styles.text, complete && styles.completed]}>
+            <Text 
+                style={[styles.text, complete && styles.completed]}
+            >    
                 {description}
             </Text>
         </Pressable>
