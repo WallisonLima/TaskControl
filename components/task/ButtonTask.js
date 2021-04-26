@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, Touchable, TouchableOpacity } from 'react-native';
 
-export const ButtonTask = () => {
+export const ButtonTask = ({ description }) => {
+    const [isTextButton, setIsTextButton] = useState(description)
+    const clickTextButton = (desc) =>{
+        setIsTextButton(desc)
+    }
     return (
         <TouchableOpacity 
-            onPress={() => alert("Você clicou")}
+            onPress={() => clickTextButton("Você clicou")}
             style={styles.container}>
-            <Text style={styles.text}>Clique em mim</Text>
+            <Text style={styles.text}>{isTextButton}</Text>
         </TouchableOpacity>
     );
 };

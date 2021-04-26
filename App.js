@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, StyleSheet, View } from 'react-native';
+import { ButtonTask } from './components/task/ButtonTask';
 import { Task } from './components/task/Task';
+import { ButtonRestau } from './components/task/ButtonRestau'
 
 
 const INITIAL_TASKS = [
@@ -17,19 +19,26 @@ export default function App() {
   const handleToggleComplete = (index) => {
     const newTasks = [
       ...tasks.slice(0, index),
-      {...tasks[index], complete: !tasks[index].complete},
+      { ...tasks[index], complete: !tasks[index].complete },
       ...tasks.slice(index + 1),
     ]
     setTasks(newTasks)
   }
 
-  const handleToggleClear = (index) =>{
+  const handleToggleClear = (index) => {
     const newTasksClear = [
       ...tasks.slice(0, index),
-      ...tasks.slice(index+1),
-    ] 
-    
+      ...tasks.slice(index + 1),
+    ]
+
     setTasks(newTasksClear)
+  }
+  const butt = {
+    description: 'clica em mim'
+  }
+
+  const handleToggleRestau = (INITIAL_TASKS)=>{
+      setTasks(INITIAL_TASKS)
   }
 
   return (
@@ -39,11 +48,12 @@ export default function App() {
           description={t.description}
           complete={t.complete}
           onToggleComplete={() => handleToggleComplete(index)}
-          onToggleClear={() => handleToggleClear(index)}
+          onToggleClear={() => handleToggleClear}
         />
-      ))} 
-
-      <Button onPress={()=> setTasks([])} title="Zerar Tarefas" />    
+      ))}
+      <ButtonTask description={butt.description} />
+      <ButtonRestau  onToggleRestau={() => handleToggleRestau(INITIAL_TASKS)} />
+      <Button onPress={() => setTasks([])} title="Zerar Tarefas" />
     </View>
 
   );
