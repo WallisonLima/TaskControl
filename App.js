@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, View, ScrollViewComponent } from 'react-native';
 import { ButtonTask } from './components/task/ButtonTask';
 import { Task } from './components/task/Task';
 import { ButtonRestau } from './components/task/ButtonRestau'
 
 
 const INITIAL_TASKS = [
-  { id: 1, description: 'Fazer atividade de Engenharia de Software', complete: false },
-  { id: 2, description: 'Estudar materia de Calculo', complete: false },
+
   { id: 3, description: 'Checar emails', complete: false },
   { id: 4, description: 'Checar Slack', complete: false },
   { id: 5, description: 'Estudar React-Native', complete: false },
@@ -37,23 +36,25 @@ export default function App() {
     description: 'clica em mim'
   }
 
-  const handleToggleRestau = (INITIAL_TASKS)=>{
-      setTasks(INITIAL_TASKS)
+  const handleToggleRestau = (INITIAL_TASKS) => {
+    setTasks(INITIAL_TASKS)
   }
 
   return (
     <View style={styles.container}>
-      {tasks.map((t, index) => (
-        <Task
-          description={t.description}
-          complete={t.complete}
-          onToggleComplete={() => handleToggleComplete(index)}
-          onToggleClear={() => handleToggleClear}
-        />
-      ))}
-      <ButtonTask description={butt.description} />
-      <ButtonRestau  onToggleRestau={() => handleToggleRestau(INITIAL_TASKS)} />
-      <Button onPress={() => setTasks([])} title="Zerar Tarefas" />
+      <ScrollViewComponent>
+        {tasks.map((t, index) => (
+          <Task
+            description={t.description}
+            complete={t.complete}
+            onToggleComplete={() => handleToggleComplete(index)}
+            onToggleClear={() => handleToggleClear}
+          />
+        ))}
+
+        <ButtonRestau onToggleRestau={() => handleToggleRestau(INITIAL_TASKS)} />
+        <Button onPress={() => setTasks([])} title="Zerar Tarefas" />
+      </ScrollViewComponent>
     </View>
 
   );
